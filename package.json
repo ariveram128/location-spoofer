@@ -1,0 +1,41 @@
+{
+  "name": "location-spoofer",
+  "version": "1.0.0",
+  "description": "Desktop location spoofer for iPhone",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "nodemon --exec electron .",
+    "build": "electron-builder",
+    "test-ios": "python scripts/test-connection.py"
+  },
+  "keywords": ["electron", "ios", "location", "gps"],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "leaflet": "^1.9.4",
+    "gpx-parser-builder": "^1.8.0"
+  },
+  "build": {
+    "appId": "com.yourname.location-spoofer",
+    "productName": "Location Spoofer",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    }
+  }
+}

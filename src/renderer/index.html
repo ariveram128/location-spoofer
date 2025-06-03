@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Location Spoofer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <div class="header">
+        <h1>📍 Location Spoofer</h1>
+        <div class="device-status">
+            <span id="device-status">Device: Not Connected</span>
+            <button id="connect-btn">Connect iPhone</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="map-section">
+            <div id="map"></div>
+        </div>
+
+        <div class="controls-section">
+            <div class="control-group">
+                <h3>Current Location</h3>
+                <div class="location-display">
+                    <span id="current-lat">0.000000</span>, <span id="current-lng">0.000000</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Set Location</h3>
+                <div class="input-group">
+                    <input type="number" id="target-lat" placeholder="Latitude" step="any">
+                    <input type="number" id="target-lng" placeholder="Longitude" step="any">
+                    <button id="set-location-btn">Set Location</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Movement Mode</h3>
+                <div class="radio-group">
+                    <label><input type="radio" name="movement" value="teleport" checked> Teleport</label>
+                    <label><input type="radio" name="movement" value="walking"> Walking</label>
+                    <label><input type="radio" name="movement" value="driving"> Driving</label>
+                </div>
+                <div class="speed-control">
+                    <label>Speed: <input type="range" id="speed-slider" min="1" max="100" value="5"> <span id="speed-value">5</span> km/h</label>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Quick Actions</h3>
+                <button id="restore-gps-btn" class="action-btn">Restore Real GPS</button>
+                <button id="get-current-btn" class="action-btn">Get Current Location</button>
+            </div>
+
+            <div class="control-group">
+                <h3>Favorites</h3>
+                <div id="favorites-list">
+                    <div class="favorite-item">
+                        <span>🏠 Home</span>
+                        <button onclick="setFavorite(37.7749, -122.4194)">Go</button>
+                    </div>
+                    <div class="favorite-item">
+                        <span>🏢 Work</span>
+                        <button onclick="setFavorite(37.7849, -122.4094)">Go</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <span id="status-message">Ready</span>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="renderer.js"></script>
+</body>
+</html>
