@@ -1,0 +1,22 @@
+# Core dependencies
+pymobiledevice3>=4.21.1
+gpxpy>=1.5.0
+
+# Networking and communication
+requests>=2.32.0
+zeroconf>=0.147.0
+httpx>=0.28.0
+
+# Web API service
+fastapi>=0.115.0
+uvicorn>=0.34.0
+python-dotenv>=1.1.0
+
+# Utilities
+tqdm>=4.67.0
+pillow>=11.0.0
+cryptography>=45.0.0
+
+# Development tools
+pytest>=7.0.0
+black>=24.0.0 
