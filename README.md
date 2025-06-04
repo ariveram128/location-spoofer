@@ -2,13 +2,17 @@
 
 A desktop application for controlling iPhone location spoofing via USB/WiFi connection without requiring jailbreak.
 
+## ⚠️ Development Status
+
+**This project is currently in early development. Features are not yet working and the application is not functional.** We are actively working on implementing the core functionality. Please check back later for updates or contribute to help speed up development.
+
 ## Project Overview
 
 Location Spoofer is an open-source desktop application that enables users to simulate different GPS locations on their iPhone without jailbreaking the device. This approach bypasses mobile app store restrictions by running control software on the desktop that communicates with the mobile device.
 
 ## Features
 
-- Spoof GPS location on iPhone via USB or WiFi connection
+- Spoof GPS location on iPhone via USB, WiFi, or Bluetooth connection
 - Interactive map interface for selecting locations
 - Multiple movement simulation modes (walking, cycling, driving)
 - Route planning with multiple waypoints
@@ -19,9 +23,9 @@ Location Spoofer is an open-source desktop application that enables users to sim
 ## Technologies
 
 - **Desktop**: Electron, Node.js
-- **Communication**: libimobiledevice, pymobiledevice3
+- **Communication**: libimobiledevice, pymobiledevice3, Bluetooth (BLE)
 - **Maps**: Leaflet.js
-- **iPhone Connection**: USB/WiFi protocols
+- **iPhone Connection**: USB/WiFi/Bluetooth protocols
 
 ## Installation
 
@@ -31,6 +35,7 @@ Location Spoofer is an open-source desktop application that enables users to sim
 - Python 3.9+ with pip
 - Node.js LTS version
 - USB connection to iPhone
+- Bluetooth adapter (for Bluetooth connectivity)
 - iPhone with Developer Mode enabled
 - iTunes (for iPhone drivers)
 
@@ -61,13 +66,31 @@ Location Spoofer is an open-source desktop application that enables users to sim
 
 ## Usage
 
-1. Connect your iPhone via USB cable
+1. Connect your iPhone via USB, WiFi, or Bluetooth
 2. Launch the application
 3. Verify connection status in the app
 4. Select a location on the map or enter coordinates
 5. Choose movement mode (teleport, walking, driving)
 6. Click "Set Location" to begin location spoofing
 7. Use "Reset to Real GPS" to restore actual location
+
+## Connection Methods
+
+### USB Connection
+The default and most reliable connection method. Requires a physical USB connection between your computer and iPhone.
+
+### WiFi Connection
+Connect wirelessly to your iPhone as long as it's on the same network. This requires initial pairing via USB.
+
+### Bluetooth Connection (New!)
+Connect to your iPhone using Bluetooth Low Energy (BLE). This provides a wireless alternative that may work in scenarios where WiFi isn't available.
+
+To use Bluetooth:
+1. Enable Bluetooth on both your computer and iPhone
+2. Make sure your devices are paired
+3. Launch the application and select "Bluetooth" as the connection method
+4. Select your iPhone from the discovered devices list
+5. Proceed with location spoofing
 
 ## Development
 
@@ -79,18 +102,26 @@ location-spoofer/
 │   ├── main/         # Electron main process
 │   ├── renderer/     # UI components
 │   ├── services/     # iPhone communication
+│   │   ├── bluetooth_connector.py  # Bluetooth connectivity
+│   │   ├── connection_manager.py   # Unified connection handling
 │   └── utils/        # Helper functions
 ├── scripts/          # Utility scripts
 ├── docs/             # Documentation
 └── resources/        # Application resources
 ```
 
-### Testing iPhone Connection
+### Testing Device Connections
 
-Use the test script to verify proper connection to your iPhone:
+Test your iPhone connection using the provided test script:
 
 ```
-python scripts/test-connection.py
+# Test all connection methods
+python scripts/test-connections.py
+
+# Test specific connection type
+python scripts/test-connections.py --type bluetooth
+python scripts/test-connections.py --type usb
+python scripts/test-connections.py --type wifi
 ```
 
 ### Building for Distribution

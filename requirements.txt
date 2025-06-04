@@ -1,6 +1,7 @@
 # Core dependencies
 pymobiledevice3>=4.21.1
 gpxpy>=1.5.0
+bleak>=0.21.0  # Bluetooth connectivity
 
 # Networking and communication
 requests>=2.32.0
